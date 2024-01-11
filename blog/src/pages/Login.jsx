@@ -1,4 +1,3 @@
-import React from "react";
 import { Login as logincomponent } from "../components";
 
 function Login() {

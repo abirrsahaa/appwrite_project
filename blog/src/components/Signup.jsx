@@ -7,17 +7,21 @@ import authservice from "../appwrite/auth";
 import { useDispatch } from "react-redux";
 import { login as authlogin } from "../store/authSlice";
 import { Link, useNavigate } from "react-router-dom";
-import { Input } from "./index";
+import { Input, Logo } from "../components/index";
 import { useForm } from "react-hook-form";
 
 function Signup() {
   const [Error, setError] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [register, handlesubmit] = useForm();
+  const { register, handleSubmit } = useForm();
 
   const signup = async (data) => {
     //here i wil be implementing the create account functionality as this is what this function will do
+
+    // lets start debugging
+    console.table(data);
+
     setError("");
     try {
       const account = await authservice.createAccount(data);
@@ -29,6 +33,7 @@ function Signup() {
         }
       }
     } catch (error) {
+      console.log("the error is during signing up");
       setError(error.message);
     }
   };
@@ -58,7 +63,7 @@ function Signup() {
           </Link>
         </p>
         {Error && <p className="text-red-600 mt-8 text-center">{Error}</p>}
-        <form onSubmit={handlesubmit(signup)}>
+        <form onSubmit={handleSubmit(signup)}>
           <div>
             <Input
               label="Full name: "

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import appwriteService from "../appwrite/config";
 
 import { PostCard, Container } from "../components";
@@ -34,7 +34,7 @@ function Home() {
       <Container>
         <div className="flex flex-wrap">
           {posts.map((post) => (
-            <div key={post.$id} className="p-2 w-1/4">
+            <div key={post.$id} className=" w-[20%] h-[20%] ">
               <PostCard {...post} />
             </div>
           ))}

@@ -20,11 +20,11 @@
 // form using react-hook-form and uske complications whenever necessary
 // and input ki component use karni hai yaha !
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { Input } from "./index";
+import { Input, Logo } from "./index";
 
 import authservice from "../appwrite/auth";
 import { login as authlogin } from "../store/authSlice";
@@ -34,7 +34,7 @@ function Login() {
   const navigate = useNavigate();
 
   const [Error, setError] = useState(null);
-  const [register, handlesubmit] = useForm();
+  const { register, handleSubmit } = useForm();
 
   const login = async (data) => {
     setError("");
@@ -78,7 +78,7 @@ function Login() {
           </Link>
         </p>
         {Error && <p className="text-red-600 mt-8 text-center">{Error}</p>}
-        <form onSubmit={handlesubmit(login)} className="mt-8">
+        <form onSubmit={handleSubmit(login)} className="mt-8">
           {/* here i will be basixally needing two field and a button */}
           <div className="space-y-5">
             <Input

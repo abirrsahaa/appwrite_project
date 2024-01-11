@@ -17,19 +17,19 @@ export class Service {
   //   create post ,get post ,get posts,update post ,delete post
   // so get on with all the end points and implement the crud in the appwrite service
 
-  async createPost({ title, slug, content, featuredImage, status, userId }) {
+  async createPost({ title, slug, content, featuredImage, status, user_id }) {
     try {
       return await this.database.createDocument(
         conf.appwrite_database_id,
         conf.appwrite_collection_id,
-        ID.unique(),
+        slug,
         {
           title,
           slug,
           content,
           featuredImage,
           status,
-          userId,
+          user_id,
         }
       );
     } catch (error) {
@@ -100,7 +100,7 @@ export class Service {
   // which is basically where we upload file and images and maybe videos !
   async uploadFile(file) {
     try {
-      return await this.bucket.uploadFile(
+      return await this.bucket.createFile(
         conf.appwrite_storage_id,
         ID.unique(),
         file
